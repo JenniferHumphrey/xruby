@@ -26,6 +26,10 @@ class CustomSet
     CustomSet.new
   end
 
+  def empty?
+    size == 0
+  end
+
   def intersection(other)
     intersection = nodes.select do |node|
       other.nodes.any? { |other_node| other_node.eql?(node) }
@@ -37,7 +41,7 @@ class CustomSet
     data.any? { |node| node.datum.eql?(datum) }
   end
 
-  def put(datum)
+  def add(datum)
     unless data.any? { |node| node.datum.eql?(datum) }
       add_datum(datum)
     end
@@ -89,4 +93,8 @@ class Node
   def initialize(input_datum)
     @datum = input_datum
   end
+end
+
+module BookKeeping
+  VERSION = 1
 end
